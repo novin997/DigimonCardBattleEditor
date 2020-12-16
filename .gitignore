@@ -1,1 +1,4 @@
 react-electron/node_modules
+react-electron/dist
+react-electron/build
+react-electron-typescript/node_modules
