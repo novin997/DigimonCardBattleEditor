@@ -1,0 +1,12 @@
+$background-color: #101820ff;
+$forground-color: #fee715ff;
+
+.App {
+  text-align: center;
+  background-color: $background-color;
+  height: 100vh;
+
+  h1 {
+    color: $forground-color;
+  }
+}
