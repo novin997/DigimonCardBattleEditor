@@ -6,7 +6,11 @@ $forground-color: #fee715ff;
   background-color: $background-color;
   height: 100vh;
 
-  h1 {
+  & > * {
     color: $forground-color;
+  }
+
+  h1 {
+    padding: 2rem;
   }
 }

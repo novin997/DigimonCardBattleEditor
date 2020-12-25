@@ -7,6 +7,9 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require("path");
 const url = require("url");
 
+const ipc = electron.ipcMain;
+const dialog = electron.dialog;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -24,7 +27,9 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    nodeIntegration: true,
+    webPreferences: {
+      nodeIntegration: true,
+    },
     title: "Digimon Card Battle Editor",
   });
 
@@ -63,6 +68,19 @@ app.on("activate", function () {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipc.on("open-file-dialog", (event) => {
+  dialog
+    .showOpenDialog(mainWindow, {
+      properties: ["openFile"],
+    })
+    .then((files) => {
+      if (files) {
+        console.log(files);
+        event.sender.send("selected-file", files);
+      }
+    });
 });
 
 // In this file you can include the rest of your app's specific main process
