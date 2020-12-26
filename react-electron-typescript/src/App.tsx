@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { GiHealthNormal } from "react-icons/gi";
 import "./App.scss";
 import { message, Button } from "antd";
@@ -6,13 +6,15 @@ import { message, Button } from "antd";
 const { ipcRenderer } = window.require("electron");
 
 function App() {
+  const [file, setFile] = useState<string>("");
+
   const chooseFile = () => {
     ipcRenderer.send("open-file-dialog");
   };
 
   useEffect(() => {
     ipcRenderer.on("selected-file", (event, path) => {
-      console.log(path);
+      setFile(path.filePaths[0]);
     });
     return () => {};
   }, []);
@@ -23,6 +25,7 @@ function App() {
       <Button onClick={chooseFile} type="primary">
         Select File
       </Button>
+      <h4>{file}</h4>
       <GiHealthNormal />
     </div>
   );

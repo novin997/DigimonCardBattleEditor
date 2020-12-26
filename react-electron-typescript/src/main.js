@@ -10,9 +10,12 @@ const url = require("url");
 const ipc = electron.ipcMain;
 const dialog = electron.dialog;
 
+const fs = require("fs");
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+var fileBuffer;
 
 function createWindow() {
   const startUrl =
@@ -77,7 +80,8 @@ ipc.on("open-file-dialog", (event) => {
     })
     .then((files) => {
       if (files) {
-        console.log(files);
+        fileBuffer = fs.readFileSync(files.filePaths[0]);
+        console.log(fileBuffer);
         event.sender.send("selected-file", files);
       }
     });

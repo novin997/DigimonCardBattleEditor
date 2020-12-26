@@ -8,9 +8,10 @@ $forground-color: #fee715ff;
 
   & > * {
     color: $forground-color;
+    margin: 10px;
   }
 
   h1 {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 }
