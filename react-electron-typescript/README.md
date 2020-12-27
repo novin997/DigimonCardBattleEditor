@@ -26,12 +26,15 @@ Memory Address of Giga Hand = 021d8416
 
 ## Example Agumon
 
-Offsets
-
 00 - Card Number
+
 01 - Card Number
+
 02 - Card Type : 00(Digimon), 01(Option), 02(Digivolve)
+
 03 to 23 - Digimon Name in String
 24 - Not Sure
+
 25 - Not Sure
+
 26 - First Digit is the Type: Fire(0), Water(1), Grass(2), Dark(3),Rare(4). Second Digit is the level: R(0), A(1), C(2), U(3)
